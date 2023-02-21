@@ -84,3 +84,20 @@ class Complaint(models.Model):
     def __str__(self):
         text_length_for_preview = 20
         return self.text[:text_length_for_preview]
+
+class Owner(models.Model):
+    name = models.CharField('ФИО владельца', max_length=200, db_index=True)
+    owner_pure_phone = PhoneNumberField(
+        verbose_name="Нормализованный номер владельца",
+        blank=True
+    )
+    owners_phonenumber = models.CharField('Номер владельца', max_length=20)
+    flats = models.ManyToManyField(
+        Flat,
+        related_name="owners",
+        verbose_name="Квартиры в собственности",
+        blank=True
+    )
+
+    def __str__(self):
+        return self.name
