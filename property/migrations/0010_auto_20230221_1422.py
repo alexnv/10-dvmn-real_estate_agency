@@ -18,7 +18,7 @@ def parse_phone_number(value):
 
 def set_owner_pure_phone(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat') # noqa
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.all().iterator():
         flat.owner_pure_phone = parse_phone_number(flat.owners_phonenumber)
         flat.save()
 

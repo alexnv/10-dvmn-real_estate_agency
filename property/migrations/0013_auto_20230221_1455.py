@@ -6,7 +6,7 @@ def create_owners(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')  # noqa
     Owner = apps.get_model('property', 'Owner')  # noqa
 
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.all().iterator():
         owner = flat.owner
         owners_phonenumber = flat.owners_phonenumber
         owner_pure_phone = flat.owner_pure_phone
