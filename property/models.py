@@ -3,6 +3,9 @@ from django.db import models
 from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 
+LENGTH_FOR_TEXT_PREVIEW = 20
+
+
 class Flat(models.Model):
     created_at = models.DateTimeField(
         'Когда создано объявление',
@@ -79,8 +82,7 @@ class Complaint(models.Model):
     )
 
     def __str__(self):
-        text_length_for_preview = 20
-        return self.text[:text_length_for_preview]
+        return self.text[:LENGTH_FOR_TEXT_PREVIEW]
 
 class Owner(models.Model):
     name = models.CharField('ФИО владельца', max_length=200, db_index=True)
