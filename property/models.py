@@ -48,7 +48,7 @@ class Flat(models.Model):
 
     new_building = models.BooleanField('Новостройка', null=True, blank=True)
 
-    users_who_liked = models.ManyToManyField(
+    who_liked = models.ManyToManyField(
         User,
         related_name='likes',
         null=True,
